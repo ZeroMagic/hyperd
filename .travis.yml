@@ -36,4 +36,5 @@ install:
   - ./autogen.sh && ./configure && make
 
 script:
+  - ./scripts/kata-env-setup.sh
   - cd ${TRAVIS_BUILD_DIR} && hack/test-cmd.sh
