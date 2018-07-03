@@ -4,8 +4,6 @@ import (
 	"github.com/hyperhq/hypercontainer-utils/hlog"
 	apitypes "github.com/hyperhq/hyperd/types"
 	vc "github.com/kata-containers/runtime/virtcontainers"
-
-	"github.com/Sirupsen/logrus"
 )
 
 const (
@@ -80,9 +78,7 @@ func startSandbox(spec *apitypes.UserPod, kernel, initrd string) (sandbox *vc.Sa
 		//		NetworkModel:  vc.CNMNetworkModel,
 		//		NetworkConfig: vc.NetworkConfig{},
 	}
-	logrus.FieldLogger(logrus.New()).WithFields(logrus.Fields{
-		"sandboxConfig":    sandboxConfig,
-	}).Infof("[/daemon.go/pod/sandbox.go-startSandbox()]")
+	hlog.Log(INFO, "[/daemon.go/pod/sandbox.go-startSandbox()]--sandboxConfig: ", sandboxConfig)
 	vcsandbox, err := vc.RunSandbox(sandboxConfig)
 	sandbox, _ = vcsandbox.(*vc.Sandbox)
 	if err != nil {
