@@ -548,6 +548,10 @@ func (k *kataAgent) startSandbox(sandbox *Sandbox) error {
 		SandboxPidns: sandbox.sharePidNs,
 	}
 
+	logrus.FieldLogger(logrus.New()).WithFields(logrus.Fields{
+		"sandbox":    sandbox,
+	}).Infof("[/vendor/github.com/kata-containers/runtime/virtcontainers/kata_agent.go-startSandbox()]")
+
 	_, err = k.sendReq(req)
 	return err
 }
